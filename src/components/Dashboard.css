@@ -26,14 +26,14 @@
 .styled-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
+  margin: 10px 0;
+  font-size: 0.75em; /* Mengurangi ukuran font untuk tabel */
   font-family: sans-serif;
 }
 
 .styled-table th,
 .styled-table td {
-  padding: 12px 15px;
+  padding: 8px 10px; /* Mengurangi padding pada sel tabel */
   border: 1px solid #dddddd;
   text-align: center;
 }
