@@ -1,58 +1,61 @@
+.dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title-hci {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.table-container-centered,
+.chart-container {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
 .styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+}
 
-  .table-container-centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+  text-align: center;
+}
 
-  .title-hci {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-top: 10px;
+.styled-table th {
+  background-color: #004298;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.styled-table tbody {
+  display: contents;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
   }
-  
-  .styled-table thead tr {
-    background-color: #004298;
-    color: #ffffff;
-    text-align: left;
-  }
-  
-  .styled-table th,
-  .styled-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-  }
-  
-  .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
-  
-  .styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-  }
-  
-  .chart-container {
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    background-color: white;
-    margin-left: 0px;
-  }
-  
+}

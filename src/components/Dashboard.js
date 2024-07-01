@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './Dashboard.css';
+import { useTable } from 'react-table';
 
 function Dashboard() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://dblc.lifeforcode.net/dashboardkls')
@@ -12,9 +14,60 @@ function Dashboard() {
       .then(data => {
         console.log('Fetched data:', data);
         setData(data);
+        setLoading(false);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
   }, []);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'LC Customer KLS',
+        columns: [
+          {
+            Header: 'Total LC',
+            accessor: 'lc_customer',
+          },
+          {
+            Header: 'New',
+            accessor: 'lc_customer_new',
+          },
+          {
+            Header: 'Check-in',
+            accessor: 'lc_customer_checkin',
+          },
+          {
+            Header: 'Physical Check',
+            accessor: 'lc_customer_physical_check',
+          },
+          {
+            Header: 'Open',
+            accessor: 'lc_customer_open',
+          },
+          {
+            Header: 'Close',
+            accessor: 'lc_customer_close',
+          },
+          {
+            Header: 'Check-out',
+            accessor: 'lc_customer_checkout',
+          },
+        ],
+      },
+    ],
+    []
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns, data });
 
   const chartData = {
     labels: [
@@ -30,13 +83,13 @@ function Dashboard() {
       {
         label: 'LC Customer',
         data: data.length > 0 ? [
-          data[0].lc_customer,
-          data[0].lc_customer_new,
-          data[0].lc_customer_checkin,
-          data[0].lc_customer_physical_check,
-          data[0].lc_customer_open,
-          data[0].lc_customer_close,
-          data[0].lc_customer_checkout
+          data[0]?.lc_customer || 0,
+          data[0]?.lc_customer_new || 0,
+          data[0]?.lc_customer_checkin || 0,
+          data[0]?.lc_customer_physical_check || 0,
+          data[0]?.lc_customer_open || 0,
+          data[0]?.lc_customer_close || 0,
+          data[0]?.lc_customer_checkout || 0
         ] : [],
         backgroundColor: [
           '#8884d8',
@@ -60,37 +113,38 @@ function Dashboard() {
     ]
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="dashboard">
       <h1 className='title-hci'>Monitoring LC Customer KLS</h1>
 
       <div className="content-container">
         {/* Table */}
-        <div className="table-container table-container-centered"> {/* Added class */}
-          <table className="styled-table">
+        <div className="table-container-centered">
+          <table {...getTableProps()} className="styled-table">
             <thead>
-              <tr>
-                <th>Total LC</th>
-                <th>New</th>
-                <th>Check-in</th>
-                <th>Physical Check</th>
-                <th>Open</th>
-                <th>Close</th>
-                <th>Check-out</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.lc_customer}</td>
-                  <td>{item.lc_customer_new}</td>
-                  <td>{item.lc_customer_checkin}</td>
-                  <td>{item.lc_customer_physical_check}</td>
-                  <td>{item.lc_customer_open}</td>
-                  <td>{item.lc_customer_close}</td>
-                  <td>{item.lc_customer_checkout}</td>
+              {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                  ))}
                 </tr>
               ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map(row => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} className="table-row">
+                    {row.cells.map(cell => {
+                      return <td {...cell.getCellProps()} className="table-cell">{cell.render('Cell')}</td>;
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
