@@ -7,7 +7,7 @@ function Dashboard() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://dblc.lifeforcode.net/dashboardlc')
+    fetch('https://dblc.lifeforcode.net/dashboardkls')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched data:', data);
