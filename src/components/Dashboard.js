@@ -7,7 +7,7 @@ function Dashboard() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://dblc.lifeforcode.net/dashboardinformacust')
+    fetch('https://dblc.lifeforcode.net/dashboardlc')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched data:', data);
@@ -62,7 +62,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <h1 className='title-hci'>Monitoring LC Customer HCI</h1>
+      <h1 className='title-hci'>Monitoring LC Customer KLS</h1>
 
       <div className="content-container">
         {/* Table */}

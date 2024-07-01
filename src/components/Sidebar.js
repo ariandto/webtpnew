@@ -52,11 +52,11 @@ function App() {
             <li>
               <a href="#" className="menu-item">
                 <FaLaptopCode />
-                {isOpen && <span className="menu-text">Report Delivery</span>}
+                {isOpen && <span className="menu-text">Report</span>}
                 {!isOpen && (
                   <span className="tooltip">
                     <span className="tooltip-icon"><FaLaptopCode /></span>
-                    Report Delivery
+                    Report
                   </span>
                 )}
               </a>
