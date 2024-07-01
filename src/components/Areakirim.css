@@ -1,0 +1,10 @@
+/* Areakirim.css */
+
+.leaflet-container {
+    width: 100%; /* Menggunakan lebar 100% dari parent */
+    height: 400px; /* Atur tinggi peta sesuai kebutuhan */
+    margin-bottom: 20px;
+    border-radius: 8px; /* Menambahkan border radius untuk tampilan yang lebih estetis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan shadow untuk efek raised */
+  }
+  

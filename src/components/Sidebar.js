@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaHome, FaChartBar, FaLaptopCode, FaChartLine } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaChartBar, FaLaptopCode, FaChartLine, FaCity } from 'react-icons/fa';
 import './Sidebar.css';
 import Dashboard from './Dashboard';
+import Areakirim from './Areakirim';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,16 +51,16 @@ function App() {
               </Link>
             </li>
             <li>
-              <a href="#" className="menu-item">
-                <FaLaptopCode />
-                {isOpen && <span className="menu-text">Report</span>}
+            <Link to="/areakirim" className="menu-item">
+                <FaCity />
+                {isOpen && <span className="menu-text">Area Kirim</span>}
                 {!isOpen && (
                   <span className="tooltip">
-                    <span className="tooltip-icon"><FaLaptopCode /></span>
-                    Report
+                    <span className="tooltip-icon"><FaCity  /></span>
+                    Area Kirim
                   </span>
                 )}
-              </a>
+                </Link>
             </li>
             <li>
               <a href="#" className="menu-item">
@@ -92,6 +93,7 @@ function App() {
               </div>
             } />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/areakirim" element={<Areakirim/>} />
           </Routes>
         </div>
       </div>

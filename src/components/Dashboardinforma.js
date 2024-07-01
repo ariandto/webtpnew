@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
-import './Dashboard.css';
+import './Dashboardinforma.css';
 import { useTable } from 'react-table';
-import Dashboardinforma from './Dashboardinforma'; // Sesuaikan dengan path yang benar
 
-function Dashboard() {
+function Dashboardinforma() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://dblc.lifeforcode.net/dashboardkls')
+    fetch('https://dblc.lifeforcode.net/dashboardinformacust')
       .then(response => response.json())
       .then(data => {
         console.log('Fetched data:', data);
@@ -26,7 +25,7 @@ function Dashboard() {
   const columns = React.useMemo(
     () => [
       {
-        Header: 'LC Customer KLS',
+        Header: 'LC Customer HCI',
         columns: [
           {
             Header: 'Total LC',
@@ -116,7 +115,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <h1 className='title-hci'>Monitoring LC Customer KLS</h1>
+      <h1 className='title-hci'>Monitoring LC Customer HCI</h1>
 
       <div className="content-container">
         {/* Table */}
@@ -150,12 +149,9 @@ function Dashboard() {
         <div className="chart-container">
           <Bar data={chartData} />
         </div>
-
-        {/* Dashboard Informa */}
-        <Dashboardinforma />
       </div>
     </div>
   );
 }
 
-export default Dashboard;
+export default Dashboardinforma;
