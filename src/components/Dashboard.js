@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './Dashboard.css';
 import { useTable } from 'react-table';
-import Dashboardinforma from './Dashboardinforma'; // Sesuaikan dengan path yang benar
+// Sesuaikan dengan path yang benar
 
 function Dashboard() {
   const [data, setData] = useState([]);

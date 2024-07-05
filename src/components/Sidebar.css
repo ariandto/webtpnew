@@ -50,6 +50,7 @@
   color: #adb5bd;
   text-decoration: none;
   transition: background 0.3s;
+  position: relative;
 }
 
 .menu-item:hover {
@@ -64,7 +65,7 @@
 .tooltip {
   display: none;
   position: absolute;
-  left: 100px;
+  left: 80px;
   background: #495057;
   color: #fff;
   padding: 0.5rem;
@@ -72,6 +73,7 @@
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: 1;
 }
 
 .menu-item:hover .tooltip {
@@ -94,4 +96,17 @@
   flex-grow: 1;
   padding: 2rem;
   background: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+  .sidebar.open {
+    width: 250px;
+  }
+  .content {
+    padding: 1rem;
+  }
 }
